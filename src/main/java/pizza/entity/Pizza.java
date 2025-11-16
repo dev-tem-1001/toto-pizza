@@ -1,14 +1,14 @@
-package pizza.model;
+package pizza.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
 
-@Data
+// @Data
+
 @Entity
 public class Pizza {
 
@@ -19,10 +19,15 @@ public class Pizza {
     @NotNull
     @Size(min=5, message="Name must be at least 5 characters long")
     private String name;
-    private Date createAt;
 
+    @NotNull
+    private int price;
+
+    @ManyToMany
     @Size(min=1, message="You must choose at least 1 ingredient")
     private List<Ingredient> ingredients;
+
+    private Date createAt;
 
     public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);
