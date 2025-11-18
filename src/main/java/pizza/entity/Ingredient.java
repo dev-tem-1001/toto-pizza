@@ -1,14 +1,13 @@
 package pizza.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.math.BigDecimal;
 
 // @Data не стоит использовать для сущностей, тк может вызывать проблемы с производительностью
 
@@ -20,30 +19,25 @@ import java.util.List;
 public class Ingredient {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
     private String name;
-    private Dough dough; // Тесто
-    private Sauce sauce; // Соус
-    private List<Meat> meat = new ArrayList<>(); // Мясо
-    private List<Vegetables> vegetables = new ArrayList<>(); // Овощи
 
-    enum Dough {
-        SUBTLE, TRADITIONAL
+    @Enumerated(EnumType.STRING)
+    private Type type; // Тесто
+
+    @NotNull
+    private int preparationTime;
+
+    @NotNull
+    @Column(precision = 10, scale = 2)
+    private BigDecimal price;
+
+    enum Type {
+        DOUGH, MEAT, VEGETABLES, SAUCE
     }
-
-    enum Sauce {
-        SIGNATURE_TOMATO, SAUCE_ALFREDOS_SIGNATURE;
-    }
-
-    enum Meat {
-        CHICKEN, SAUSAGES, SHRIMP, HAM, BACON;
-    }
-
-    enum Vegetables {
-        TOMATOES, CUCUMBERS, GARLIC, SWEET_PEPPERS, RED_ONION, PINEAPPLES, CHAMPIGNONS;
-    }
-
-
-
-
+    // Как только будем добавляеть ингредиенты, просто будем перечислять их в data.sql,
+    // а уже с БД будем брать ингредиенты для готовых рецептов пицц
 }
