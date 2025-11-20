@@ -24,7 +24,7 @@ public class PizzaOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // заказ номер 11 ...
+    private Long id;
 
     @NotBlank(message="Введите название заказа")
     private String name;

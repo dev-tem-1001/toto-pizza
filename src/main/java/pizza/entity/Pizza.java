@@ -23,7 +23,7 @@ public class Pizza {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     @NotNull
     @Size(min=5, message="Имя должно состоять как минимум из 5 символов")
@@ -33,16 +33,20 @@ public class Pizza {
     @Column(precision = 10, scale = 2)
     private BigDecimal price;
 
-    @ManyToMany
+    @ElementCollection
+    @CollectionTable( // разобрать эти моменты
+            name = "pizza_ingredients",
+            joinColumns = @JoinColumn(name = "pizza_id")
+    )
     @Size(min=1, message="Вы должны выбрать хотя бы один ингредиент")
-    private List<Ingredient> ingredients;
+    private List<IngredientRef> ingredients;
 
     private LocalDateTime createdAt;
 
     @NotNull
     private int preparationTime;
 
-    public void addIngredient(Ingredient ingredient) {
+    public void addIngredient(IngredientRef ingredient) {
         this.ingredients.add(ingredient);
     }
 }
