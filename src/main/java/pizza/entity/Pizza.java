@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,11 +28,11 @@ public class Pizza {
 
     @NotNull
     @Size(min=5, message="Имя должно состоять как минимум из 5 символов")
-    private String name;
+    private String name; // название пиццы
 
     @NotNull
     @Column(precision = 10, scale = 2)
-    private BigDecimal price;
+    private BigDecimal price; // цена пиццы
 
     @ElementCollection
     @CollectionTable( // разобрать эти моменты
@@ -39,12 +40,12 @@ public class Pizza {
             joinColumns = @JoinColumn(name = "pizza_id")
     )
     @Size(min=1, message="Вы должны выбрать хотя бы один ингредиент")
-    private List<IngredientRef> ingredients;
+    private List<IngredientRef> ingredients = new ArrayList<>(); // список ингредиентов
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt; // дата создания пиццы
 
     @NotNull
-    private int preparationTime;
+    private int preparationTime; // примерное время готовки пиццы
 
     public void addIngredient(IngredientRef ingredient) {
         this.ingredients.add(ingredient);

@@ -27,21 +27,21 @@ public class PizzaOrder {
     private Long id;
 
     @NotBlank(message="Введите название заказа")
-    private String name;
+    private String name; // Название заказа
 
     @NotNull
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Pizza> pizzas = new ArrayList<>();
+    private List<Pizza> pizzas = new ArrayList<>(); // список заказов
 
     @NotNull
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt; // дата создания
 
     @NotNull
-    private int preparationTime;
+    private int preparationTime; // общее время готовки
 
     @NotNull
     @Column(precision = 10, scale = 2)
-    private BigDecimal totalPrice;
+    private BigDecimal totalPrice; // Цена за весь заказ
 
     @NotBlank(message="Введите название города")
     private String deliveryCity;

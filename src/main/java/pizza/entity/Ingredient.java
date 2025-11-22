@@ -20,16 +20,16 @@ public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @NotNull
     private String name;
 
     @Enumerated(EnumType.STRING)
-    private Type type; // Тесто
+    private Type type; // Тип ингредиента
 
     @NotNull
-    private int preparationTime;
+    private int preparationTime; // минуты
 
     @NotNull
     @Column(precision = 10, scale = 2)
