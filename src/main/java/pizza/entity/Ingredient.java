@@ -19,13 +19,12 @@ import java.math.BigDecimal;
 public class Ingredient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @NotNull
+    @Column(precision = 10)
     private String name;
 
-    @Enumerated(EnumType.STRING)
     private Type type; // Тип ингредиента
 
     @NotNull
@@ -36,8 +35,8 @@ public class Ingredient {
     private BigDecimal price;
 
     enum Type {
-        DOUGH, MEAT, VEGETABLES, SAUCE
+        DOUGH, MEAT, VEGGIES, SAUCE
     }
-    // Как только будем добавляеть ингредиенты, просто будем перечислять их в data.sql,
+    // Как только будем добавляеть ингредиенты, просто будем перечислять их в ,
     // а уже с БД будем брать ингредиенты для готовых рецептов пицц
 }

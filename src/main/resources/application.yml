@@ -12,7 +12,8 @@ spring:
     console:
       enabled: true
       path: /h2-console
-logging:
-  level:
-    org.springframework.jdbc.datasource.init: DEBUG
-    org.springframework.boot.autoconfigure.jdbc: DEBUG
+hibernate:
+  dialect=org:
+    hibernate:
+      dialect:
+        H2Dialect:
