@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -24,7 +25,7 @@ public class Pizza {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     @NotNull
     @Size(min=5, message="Имя должно состоять как минимум из 5 символов")
@@ -42,7 +43,8 @@ public class Pizza {
     @Size(min=1, message="Вы должны выбрать хотя бы один ингредиент")
     private List<IngredientRef> ingredients = new ArrayList<>(); // список ингредиентов
 
-    private LocalDateTime createdAt; // дата создания пиццы
+    @CreationTimestamp
+    private LocalDateTime createdAt = LocalDateTime.now(); // дата создания пиццы
 
     @NotNull
     private int preparationTime; // примерное время готовки пиццы
@@ -50,4 +52,6 @@ public class Pizza {
     public void addIngredient(IngredientRef ingredient) {
         this.ingredients.add(ingredient);
     }
+
+
 }
