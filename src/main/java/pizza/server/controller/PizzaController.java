@@ -1,4 +1,4 @@
-package pizza.controller;
+package pizza.server.controller;
 
 public class PizzaController {
 }
