@@ -1,0 +1,15 @@
+.pizza-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 50px;
+            padding: 20px;
+        }
+        .pizza-card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            text-align: center;
+        }
+        .pizza-card img {
+            width: 50%;
+            height: 150px;
+        }

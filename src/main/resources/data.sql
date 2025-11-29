@@ -37,13 +37,13 @@ INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('TERIYAKI_SAUCE', 'Терияки соус', 3, 10, 129.00),
 ('RANCH_SAUCE', 'Ранч соус', 3, 5, 79.00);
 
-INSERT INTO pizza (id, name, preparation_time, price, created_at) values
-(1, 'Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0)),
-(2, 'Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0)),
-(3, 'Гавайская', 110, 380.00, CURRENT_TIMESTAMP(0)),
-(4, 'Мясная', 130, 450.00, CURRENT_TIMESTAMP(0)),
-(5, 'Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0)),
-(6, 'Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0));
+INSERT INTO pizza (id, name, preparation_time, price, created_at, image_url) values
+(1, 'Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
+(2, 'Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
+(3, 'Гавайская', 110, 380.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
+(4, 'Мясная', 130, 450.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
+(5, 'Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
+(6, 'Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg');
 
 INSERT INTO pizza_ingredients (pizza_id, ingredient_id, quantity) values
 

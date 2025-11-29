@@ -49,6 +49,8 @@ public class Pizza {
     @NotNull
     private int preparationTime; // примерное время готовки пиццы
 
+    private String imageUrl; // путь к соответствующему изображению пиццы
+
     public void addIngredient(IngredientRef ingredient) {
         this.ingredients.add(ingredient);
     }

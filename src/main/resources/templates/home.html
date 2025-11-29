@@ -3,18 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/templates/styles/home.css">
+    <link rel="stylesheet" href="/styles/home.css">
 </head>
 <body>
-    <h1>ToTo-Pizza</h1>
-    <div class="pizza-card">
-        <img src="/images/pizza-pepperoni.jpg" alt="Пепперони"
-             class="pizza-image"
-             width="200"
-             height="200">
-        <div class="pizza-info">
-            <span class="pizza-price">3899.89 ₽</span>
-            <span class="pizza-name">Пепперони</span>
+    <h1>Наши пиццы:</h1>
+    <div class="pizza-grid">
+        <div th:each="pizza : ${pizzas}" class="pizza-card">
+            <img th:src="${pizza.imageUrl}" th:alt="${pizza.name}">
+            <h3 th:text="${pizza.name}"></h3>
+            <p th:text="'₽' + ${pizza.price}"></p>
         </div>
     </div>
 </body>
