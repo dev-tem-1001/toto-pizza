@@ -16,11 +16,11 @@ public class HomeController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String menu(Model model) {
         List<Pizza> allPizzas = pizzaRepository.findAll();
         model.addAttribute("pizzas", allPizzas);
-        return "home";
+        return "menu";
     }
 
 }

@@ -38,8 +38,8 @@ INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('RANCH_SAUCE', 'Ранч соус', 3, 5, 79.00);
 
 INSERT INTO pizza (id, name, preparation_time, price, created_at, image_url) values
-(1, 'Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
-(2, 'Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
+(1, 'Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0), 'https://www.pngarts.com/files/3/Pizza-PNG-Image.png'),
+(2, 'Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0), 'https://www.pngarts.com/files/10/Spicy-Food-Items-Transparent-Image.png'),
 (3, 'Гавайская', 110, 380.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
 (4, 'Мясная', 130, 450.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
 (5, 'Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),

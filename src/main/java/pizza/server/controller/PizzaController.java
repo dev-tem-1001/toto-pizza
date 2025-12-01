@@ -12,9 +12,9 @@ public class PizzaController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    @GetMapping("/menu")
+    @GetMapping("/custom")
     public String menu(Model model) {
         model.addAttribute("pizzas", pizzaRepository.findAll());
-        return "menu";
+        return "custom";
     }
 }

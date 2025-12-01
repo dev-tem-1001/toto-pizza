@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>ToTo-Pizza - Главная</title>
-
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/styles/menu.css">
 </head>
 <body>
-<h1>🍕 ToTo-Pizza - Лучшая пицца в городе!</h1>
-
-
+    <h1>Наши пиццы:</h1>
+    <div class="pizza-grid">
+        <div th:each="pizza : ${pizzas}" class="pizza-card">
+            <img th:src="${pizza.imageUrl}" th:alt="${pizza.name}">
+            <h3 th:text="${pizza.name}"></h3>
+            <p th:text="${pizza.price} + '₽'"></p>
+        </div>
+    </div>
+    <div class="pizza-button">
+        <button class="button-custom"><B>Cоздайте свою пиццу!</B></button>
+        <button class="button-order"><B>В заказ</B></button>
+    </div>
 </body>
 </html>
