@@ -19,6 +19,7 @@ INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 -- Сыры и овощи
 INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('MOZZARELLA', 'Моцарелла', 2, 6, 40.00),
+('DOUBLE_MOZZARELLA', 'Увеличенная порция моцареллы', 2, 8, 70.00),
 ('PARMESAN', 'Пармезан', 2, 6, 50.00),
 ('GOUDA', 'Гауда', 2, 10, 45.00),
 ('BLUE_CHEESE', 'Дорблю', 2, 10, 55.00),
@@ -38,12 +39,12 @@ INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('RANCH_SAUCE', 'Ранч соус', 3, 5, 79.00);
 
 INSERT INTO pizza (id, name, preparation_time, price, created_at, image_url) values
-(1, 'Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0), 'https://www.pngarts.com/files/3/Pizza-PNG-Image.png'),
-(2, 'Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0), 'https://www.pngarts.com/files/10/Spicy-Food-Items-Transparent-Image.png'),
-(3, 'Гавайская', 110, 380.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
-(4, 'Мясная', 130, 450.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
-(5, 'Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg'),
-(6, 'Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0), '/images/pizza-pepperoni.jpg');
+(1, 'Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+(2, 'Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+(3, 'Гавайская', 110, 380.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+(4, 'Мясная', 130, 450.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+(5, 'Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+(6, 'Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png');
 
 INSERT INTO pizza_ingredients (pizza_id, ingredient_id, quantity) values
 

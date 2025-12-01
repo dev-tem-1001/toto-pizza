@@ -11,7 +11,10 @@
         <div th:each="pizza : ${pizzas}" class="pizza-card">
             <img th:src="${pizza.imageUrl}" th:alt="${pizza.name}">
             <h3 th:text="${pizza.name}"></h3>
-            <p th:text="${pizza.price} + '₽'"></p>
+            <div th:each="ingredientRef : ${pizza.ingredients}">
+                <span th:text="${ingredient.getName(ingredientRef.ingredientId)}"></span>
+            </div>
+            <h3 th:text="${pizza.price} + '₽'"></h3>
         </div>
     </div>
     <div class="pizza-button">
