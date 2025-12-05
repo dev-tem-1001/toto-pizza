@@ -46,6 +46,7 @@ INSERT INTO pizza (id, name, preparation_time, price, created_at, image_url) val
 (5, 'Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
 (6, 'Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png');
 
+
 INSERT INTO pizza_ingredients (pizza_id, ingredient_id, quantity) values
 
 -- Пепперони

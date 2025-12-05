@@ -4,22 +4,35 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/styles/menu.css">
+    <style>
+        .button-custom, .button-order {
+            display: inline;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>Наши пиццы:</h1>
+    <h1 class="pizza-title">Наши пиццы:</h1>
     <div class="pizza-grid">
         <div th:each="pizza : ${pizzas}" class="pizza-card">
             <img th:src="${pizza.imageUrl}" th:alt="${pizza.name}">
-            <h3 th:text="${pizza.name}"></h3>
-            <div th:each="ingredientRef : ${pizza.ingredients}">
-                <span th:text="${ingredient.getName(ingredientRef.ingredientId)}"></span>
+            <h2 th:text="${pizza.name}"></h2>
+            <div class="ingredients-line">
+                <span th:each="ingredientRef : ${pizza.ingredients}"
+                     th:text="${ingredientRef.ingredient.getName}  +
+                          (${ingredientRefStat.last} ? '' : ', ')">
+                </span>
             </div>
-            <h3 th:text="${pizza.price} + '₽'"></h3>
+            <h2 th:text="${pizza.price} + ' ₽'" class="pizza-price"></h2>
+            <button class="button-select">Выбрать</button>
         </div>
     </div>
-    <div class="pizza-button">
-        <button class="button-custom"><B>Cоздайте свою пиццу!</B></button>
-        <button class="button-order"><B>В заказ</B></button>
-    </div>
+    <a th:href="@{/custom}" class="btn button-custom">
+        <b>Создайте свою пиццу!</b>
+    </a>
+
+    <a th:href="@{/order}" class="btn button-order">
+        <b>В заказ</b>
+    </a>
 </body>
 </html>

@@ -55,4 +55,8 @@ public class PizzaOrder {
     @NotBlank(message="Введите номер квартиры")
     private String deliveryFlat;
 
+    public void addPizza(Pizza pizza) {
+        this.pizzas.add(pizza);
+    }
+
 }

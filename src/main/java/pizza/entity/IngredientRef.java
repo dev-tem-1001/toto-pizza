@@ -13,10 +13,10 @@ import lombok.Setter;
 @Embeddable
 public class IngredientRef {
 
+    @ManyToOne
+    private Ingredient ingredient;
 
-    private String ingredientId; // "MOZZARELLA", "TOMATO"
     private int quantity = 1;    // 1, 2, 3...
-
 
 }
 
