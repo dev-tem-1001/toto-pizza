@@ -6,5 +6,16 @@
 </head>
 <body>
     <h1>Heeellloooooo</h1>
+
+    <div th:each="pizza : ${pizzas}" class="pizza-card">
+        <form th:action="@{/order}" method="POST">
+            <h2 th:text="${pizza.name}"></h2>
+            <h2 th:text="${pizza.price} + ' ₽'" class="pizza-price"></h2>
+            <!-- <input th:field="*{pizzas}" name="pizzaId" th:value="${pizza.id}"> -->
+            <!-- <span th:text="${pizza.name}">PIZZA</span><br/> -->
+            <!-- <button class="button-select">Выбрать</button> -->
+
+        </form>
+    </div>
 </body>
 </html>
