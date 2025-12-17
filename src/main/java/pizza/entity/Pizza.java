@@ -51,6 +51,7 @@ public class Pizza {
 
     private String imageUrl; // путь к соответствующему изображению пиццы
 
+
     public void addIngredient(IngredientRef ingredient) {
         this.ingredients.add(ingredient);
     }

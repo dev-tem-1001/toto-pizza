@@ -28,12 +28,28 @@
             font-size: 14px;
         }
 .button-select {
-            background: #fff0e6;
-            border: 0px;
-            border-radius: 30px;
-            color: #d15700;
-            font-size: 16px;
-            height: 5rem;
-            width: 10rem;
-
+            appearance: none;/* убрать все стандартные стили */
+            border: 0; /* убрать обводку кнопки */
+            border-radius: 50px; /* закруглить углы кнопки (на 20px) */
+            background: #fff0e6; /* задать цвет фона */
+            color: #d15700; /* задать цвет текста */
+            font-size: 17px; /* задать размер текста */
+            font-weight: bold;
+            padding: 10px 28px; /* задать отступы (пространство между текстом и краем кнопки) */
+            }
+.button-select:hover { /* стили при наведении */
+            background: #ffd2b3; /* новый цвет фона */
+            }
+.btn {
+            appearance: none;/* убрать все стандартные стили */
+            border: 0; /* убрать обводку кнопки */
+            border-radius: 50px; /* закруглить углы кнопки (на 20px) */
+            background: #ff6900; /* задать цвет фона */
+            color: #ffffff; /* задать цвет текста */
+            font-size: 17px; /* задать размер текста */
+            font-weight: bold;
+            padding: 10px 28px; /* задать отступы (пространство между текстом и краем кнопки) */
+            }
+.btn:hover { /* стили при наведении */
+            background: #e86100; /* новый цвет фона */
             }

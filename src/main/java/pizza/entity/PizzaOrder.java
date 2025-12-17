@@ -49,11 +49,11 @@ public class PizzaOrder {
     @NotBlank(message = "Введите улицу")
     private String deliveryStreet;
 
-    @NotBlank(message = "Введите номер дома")
-    private String deliveryHouseNumber;
+    @NotNull(message = "Введите номер дома")
+    private int deliveryHouseNumber;
 
-    @NotBlank(message="Введите номер квартиры")
-    private String deliveryFlat;
+    @NotNull(message="Введите номер квартиры")
+    private int deliveryFlat;
 
     public void addPizza(Pizza pizza) {
         this.pizzas.add(pizza);
