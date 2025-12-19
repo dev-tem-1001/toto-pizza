@@ -6,16 +6,57 @@
 </head>
 <body>
     <h1>Heeellloooooo</h1>
+    <form th:action="@{/order}" th:object="${pizzaOrder}" method="POST" >
+        <div th:each="pizza : ${pizzas}" class="pizza-card">
 
-    <div th:each="pizza : ${pizzas}" class="pizza-card">
-        <form th:action="@{/order}" method="POST">
-            <h2 th:text="${pizza.name}"></h2>
-            <h2 th:text="${pizza.price} + ' ₽'" class="pizza-price"></h2>
-            <!-- <input th:field="*{pizzas}" name="pizzaId" th:value="${pizza.id}"> -->
-            <!-- <span th:text="${pizza.name}">PIZZA</span><br/> -->
-            <!-- <button class="button-select">Выбрать</button> -->
+                <h2 th:text="${pizza.name}"></h2>
+                <h2 th:text="${pizza.price} + ' ₽'" class="pizza-price"></h2>
+                <!-- <input th:field="*{pizzas}" name="pizzaId" th:value="${pizza.id}"> -->
+                <!-- <span th:text="${pizza.name}">PIZZA</span><br/> -->
+                <!-- <button class="button-select">Выбрать</button> -->
 
-        </form>
-    </div>
+        </div>
+        <h3>Введите название заказа</h3>
+        <label th:for="*{deliveryName}">Name: </label>
+        <input type="text" th:field="*{deliveryName}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryName')}"
+              th:errors="*{deliveryName}">Name Error</span>
+        <br/>
+
+
+        <label th:for="*{deliveryCity}">deliveryCity: </label>
+        <input type="text" th:field="*{deliveryCity}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryCity')}"
+              th:errors="*{deliveryCity}">deliveryCity Error</span>
+        <br/>
+
+        <label th:for="*{deliveryStreet}">deliveryCity: </label>
+        <input type="text" th:field="*{deliveryStreet}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryStreet')}"
+              th:errors="*{deliveryStreet}">deliveryStreet Error</span>
+        <br/>
+
+        <label th:for="*{deliveryHouseNumber}">deliveryHouseNumber: </label>
+        <input type="text" th:field="*{deliveryHouseNumber}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryHouseNumber')}"
+              th:errors="*{deliveryHouseNumber}">deliveryHouseNumber Error</span>
+        <br/>
+
+        <label th:for="*{deliveryFlat}">deliveryFlat: </label>
+        <input type="text" th:field="*{deliveryFlat}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryFlat')}"
+              th:errors="*{deliveryFlat}">deliveryFlat Error</span>
+        <br/>
+
+        <h2 th:text="${pizzaOrder.totalPrice}"></h2>
+        <h2 th:text="${pizzaOrder.preparationTime}"></h2>
+
+        <button type="submit" class="button-select">Оформить заказ</button>
+    </form>
 </body>
 </html>

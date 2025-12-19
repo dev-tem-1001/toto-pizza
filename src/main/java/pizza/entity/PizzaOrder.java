@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,14 +28,15 @@ public class PizzaOrder {
     private Long id;
 
     @NotBlank(message="Введите название заказа")
-    private String name; // Название заказа
+    private String deliveryName; // Название заказа
 
     @NotNull
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Pizza> pizzas = new ArrayList<>(); // список заказов
+    //@ManyToMany(cascade = CascadeType.ALL)
+    @ElementCollection
+    private List<Long> pizzaIds = new ArrayList<>(); // список заказов
 
-    @NotNull
-    private LocalDateTime createdAt; // дата создания
+    @CreationTimestamp
+    private LocalDateTime createdAt = LocalDateTime.now(); // дата создания
 
     @NotNull
     private int preparationTime; // общее время готовки
@@ -56,7 +58,7 @@ public class PizzaOrder {
     private int deliveryFlat;
 
     public void addPizza(Pizza pizza) {
-        this.pizzas.add(pizza);
+        this.pizzaIds.add(pizza.getId());
     }
 
 }
