@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,8 +16,17 @@ import lombok.Setter;
 @Embeddable
 public class PizzaRef {
 
-    @ManyToOne
-    private Pizza pizza;
+    //@ManyToOne
+    //private Pizza pizza;
+
+    private Long pizzaId;
+
+    private String pizzaName;
 
     private int quantity = 1;
+
+    private int pizzaPreparationTime;
+
+    private BigDecimal pizzaPrice;
+
 }

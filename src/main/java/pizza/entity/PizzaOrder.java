@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -33,7 +32,7 @@ public class PizzaOrder {
     @NotNull
     //@ManyToMany(cascade = CascadeType.ALL)
     @ElementCollection
-    private List<Long> pizzaIds = new ArrayList<>(); // список заказов
+    private List<PizzaRef> pizzaRefs = new ArrayList<>(); // список заказов
 
     @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now(); // дата создания
@@ -57,8 +56,31 @@ public class PizzaOrder {
     @NotNull(message="Введите номер квартиры")
     private int deliveryFlat;
 
+    // Метод, добавляющий пиццу в заказ
     public void addPizza(Pizza pizza) {
-        this.pizzaIds.add(pizza.getId());
+
+        for (PizzaRef pizzaRef: pizzaRefs) {
+            // Если пицца с таким id есть в заказе, то ->
+            if (pizzaRef.getPizzaId().equals(pizza.getId())) {
+                pizzaRef.setQuantity(pizzaRef.getQuantity() + 1);
+                pizzaRef.setPizzaPrice(pizzaPrice(pizzaRef, pizzaRef.getQuantity()));
+                return;
+            }
+        }
+        // Если нету такой пиццы, то создаем ее
+        PizzaRef newPizza = new PizzaRef();
+
+        newPizza.setPizzaId(pizza.getId());
+        newPizza.setPizzaName(pizza.getName());
+        newPizza.setPizzaPreparationTime(pizza.getPreparationTime());
+        newPizza.setPizzaPrice(pizza.getPrice());
+
+        pizzaRefs.add(newPizza);
     }
 
+    // Функция которая будет плюсовать цену чтобы не была цена за 6 пицц как за 1 пиццу
+    // Саам решуу :D
+    public BigDecimal pizzaPrice(PizzaRef pizza, int quantity) {
+        return pizza.getPizzaPrice().multiply(BigDecimal.valueOf(quantity));
+    }
 }

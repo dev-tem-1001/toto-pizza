@@ -42,6 +42,7 @@ public class MenuController {
         Pizza pizza = pizzaRepository.findById(pizzaId)
                 .orElseThrow(() -> new IllegalArgumentException("Пицца не найдена"));
 
+
         pizzaOrder.addPizza(pizza);
 
         // Добавляем taco в заказ

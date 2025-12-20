@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import pizza.entity.Pizza;
 import pizza.entity.PizzaOrder;
+import pizza.entity.PizzaRef;
 import pizza.repository.PizzaOrderRepository;
 import pizza.repository.PizzaRepository;
 
@@ -33,17 +34,16 @@ public class PizzaOrderController {
     public String order(@ModelAttribute PizzaOrder pizzaOrder,
                         Model model) {
 
-        List<Pizza> pizzas = pizzaOrder.getPizzaIds().stream()
-                .map(id -> pizzaRepository.findById(id).orElseThrow())
-                .collect(Collectors.toList());
+        List<PizzaRef> pizzas = pizzaOrder.getPizzaRefs();
+
         // Расчет итоговой стоимости заказа
         // и времени готовки
         BigDecimal total = BigDecimal.ZERO;
         int time = 0;
 
-        for (Pizza pizza : pizzas) {
-            total = total.add(pizza.getPrice());
-            time = time + pizza.getPreparationTime();
+        for (PizzaRef pizza : pizzas) {
+            total = total.add(pizza.getPizzaPrice());
+            time = time + pizza.getPizzaPreparationTime();
         }
 
         pizzaOrder.setTotalPrice(total);
@@ -57,6 +57,7 @@ public class PizzaOrderController {
 
     @PostMapping("/order")
     public String processOrder(@Valid PizzaOrder order, Errors errors) {
+
         if (errors.hasErrors()) {
             return "menu";
         }
