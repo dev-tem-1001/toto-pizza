@@ -63,7 +63,8 @@ public class PizzaOrder {
             // Если пицца с таким id есть в заказе, то ->
             if (pizzaRef.getPizzaId().equals(pizza.getId())) {
                 pizzaRef.setQuantity(pizzaRef.getQuantity() + 1);
-                pizzaRef.setPizzaPrice(pizzaPrice(pizzaRef, pizzaRef.getQuantity()));
+                pizzaRef.setPizzaPreparationTime(pizzaRef.getPizzaPreparationTime() + pizza.getPreparationTime());
+                pizzaRef.setPizzaPrice(pizzaPrice(pizza, pizzaRef.getQuantity()));
                 return;
             }
         }
@@ -80,7 +81,7 @@ public class PizzaOrder {
 
     // Функция которая будет плюсовать цену чтобы не была цена за 6 пицц как за 1 пиццу
     // Саам решуу :D
-    public BigDecimal pizzaPrice(PizzaRef pizza, int quantity) {
-        return pizza.getPizzaPrice().multiply(BigDecimal.valueOf(quantity));
+    public BigDecimal pizzaPrice(Pizza pizza, int quantity) {
+        return pizza.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 }
