@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+    <h1 class="ingredient-title">Сделайте свою пиццу!</h1>
+    <div class="ingredient-grid">
+        <div th:each="ingredient : ${ingredients}" class="ingredient-card">
+            <form th:action="@{/custom}" method="POST">
+                <input type="hidden" name="ingredientId" th:value="${ingredient.id}">
+                <!-- <img th:src="${pizza.imageUrl}" th:alt="${pizza.name}"> -->
+                <h2 th:text="${ingredient.name}"></h2>
+
+                <h2 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h2>
+
+                <!-- <input th:field="*{pizzas}" name="pizzaId" th:value="${pizza.id}"> -->
+                <!-- <span th:text="${pizza.name}">PIZZA</span><br/> -->
+                <!-- <button class="button-select">Выбрать</button> -->
+                <button type="submit" class="button-select">Добавить в заказ</button>
+            </form>
+        </div>
+    </div>
 
 </body>
 </html>

@@ -21,8 +21,10 @@ public class PizzaController {
 
     @GetMapping("/custom")
     public String menu(Model model) {
-        List<Ingredient> allIngredients = ingredientRepository.findAll();
-        model.addAttribute("ingredients", allIngredients);
+        List<Ingredient> ingredients = ingredientRepository.findAll();
+
+        model.addAttribute("ingredients", ingredients);
+
         return "custom";
     }
 }

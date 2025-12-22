@@ -3,12 +3,12 @@ DELETE FROM pizza_ingredients;
 DELETE FROM pizza;
 DELETE FROM ingredient;
 
--- Тесто
+-- Тесто - 0
 INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('TRADITIONAL_DOUGH', 'Традиционное тесто', 0, 40, 25.00),
 ('THIN_DOUGH', 'Тонкое тесто', 0, 50, 20.00);
 
--- Мясные ингредиенты
+-- Мясные ингредиенты - 1
 INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('BACON', 'Бекон', 1, 18, 79.00),
 ('CHICKEN', 'Цыпленок', 1, 40, 79.00),
@@ -16,7 +16,7 @@ INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('PEPPERONI', 'Пепперони', 1, 40, 79.00),
 ('SHRIMP', 'Креветки', 1, 40, 225.00);
 
--- Сыры и овощи
+-- Сыры и овощи - 2
 INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('MOZZARELLA', 'Моцарелла', 2, 6, 40.00),
 ('DOUBLE_MOZZARELLA', 'Увеличенная порция моцареллы', 2, 8, 70.00),
@@ -30,7 +30,7 @@ INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('GARLIC', 'Чеснок', 2, 5, 29.00),
 ('PINEAPPLE', 'Ананас', 2, 5, 79.00);
 
--- Соусы и приправы
+-- Соусы и приправы - 3
 INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('ITALIAN_HERBS', 'Итальянские травы', 3, 3, 59.00),
 ('TOMATO_SAUCE', 'Фирменный томатный соус', 3, 25, 225.00),
@@ -46,7 +46,7 @@ INSERT INTO pizza (id, name, preparation_time, price, created_at, image_url) val
 (5, 'Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
 (6, 'Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png');
 
-
+-- Начинка пицц
 INSERT INTO pizza_ingredients (pizza_id, ingredient_id, quantity) values
 
 -- Пепперони
