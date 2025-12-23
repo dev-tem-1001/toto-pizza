@@ -32,7 +32,7 @@ public class PizzaOrder {
     @NotNull
     //@ManyToMany(cascade = CascadeType.ALL)
     @ElementCollection
-    private List<PizzaRef> pizzaRefs = new ArrayList<>(); // список заказов
+    private List<PizzaRef> pizzas = new ArrayList<>(); // список заказов
 
     @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now(); // дата создания
@@ -59,7 +59,7 @@ public class PizzaOrder {
     // Метод, добавляющий пиццу в заказ
     public void addPizza(Pizza pizza) {
 
-        for (PizzaRef pizzaRef: pizzaRefs) {
+        for (PizzaRef pizzaRef: pizzas) {
             // Если пицца с таким id есть в заказе, то ->
             if (pizzaRef.getPizzaId().equals(pizza.getId())) {
                 pizzaRef.setQuantity(pizzaRef.getQuantity() + 1);
@@ -76,7 +76,7 @@ public class PizzaOrder {
         newPizza.setPizzaPreparationTime(pizza.getPreparationTime());
         newPizza.setPizzaPrice(pizza.getPrice());
 
-        pizzaRefs.add(newPizza);
+        pizzas.add(newPizza);
     }
 
     // Функция которая будет плюсовать цену чтобы не была цена за 6 пицц как за 1 пиццу

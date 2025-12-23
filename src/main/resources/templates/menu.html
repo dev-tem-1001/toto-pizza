@@ -15,7 +15,7 @@
                     <h2 th:text="${pizza.name}"></h2>
                     <div class="ingredients-line">
                         <span th:each="ingredientRef : ${pizza.ingredients}"
-                              th:text="${ingredientRef.ingredient.getName}  +
+                              th:text="${ingredientRef.getName}  +
                                   (${ingredientRefStat.last} ? '' : ', ')">
                         </span>
                     </div>

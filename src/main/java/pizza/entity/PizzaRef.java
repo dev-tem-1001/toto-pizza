@@ -1,5 +1,6 @@
 package pizza.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -23,10 +24,11 @@ public class PizzaRef {
 
     private String pizzaName;
 
-    private int quantity = 1;
-
     private int pizzaPreparationTime;
 
+    @Column(precision = 10, scale = 2)
     private BigDecimal pizzaPrice;
+
+    private int quantity = 1;
 
 }

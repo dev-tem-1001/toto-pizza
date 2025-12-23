@@ -30,10 +30,6 @@ public class MenuController {
         return "menu";
     }
 
-
-
-    // 2. ОБРАБОТКА формы (POST запрос)
-
     @PostMapping
     public String processPizza(
             @RequestParam("pizzaId") Long pizzaId,          // Данные из формы → объект Taco
@@ -42,12 +38,8 @@ public class MenuController {
         Pizza pizza = pizzaRepository.findById(pizzaId)
                 .orElseThrow(() -> new IllegalArgumentException("Пицца не найдена"));
 
-
         pizzaOrder.addPizza(pizza);
 
-        // Добавляем taco в заказ
-
-        // Перенаправляем на следующую страницу
         return "redirect:/order";
     }
 
@@ -55,8 +47,6 @@ public class MenuController {
     public PizzaOrder order() {
         return new PizzaOrder();
     }
-
-
 }
 
 

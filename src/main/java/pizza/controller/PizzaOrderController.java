@@ -7,8 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
-import pizza.entity.Pizza;
+
 import pizza.entity.PizzaOrder;
 import pizza.entity.PizzaRef;
 import pizza.repository.PizzaOrderRepository;
@@ -16,11 +15,10 @@ import pizza.repository.PizzaRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
-//@RequestMapping("/order")
+@RequestMapping("/order")
 @SessionAttributes("pizzaOrder")
 public class PizzaOrderController {
 
@@ -30,14 +28,12 @@ public class PizzaOrderController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    @GetMapping("/order")
+    @GetMapping
     public String order(@ModelAttribute PizzaOrder pizzaOrder,
                         Model model) {
 
-        List<PizzaRef> pizzas = pizzaOrder.getPizzaRefs();
+        List<PizzaRef> pizzas = pizzaOrder.getPizzas();
 
-        // Расчет итоговой стоимости заказа
-        // и времени готовки
         BigDecimal total = BigDecimal.ZERO;
         int time = 0;
 
@@ -52,10 +48,10 @@ public class PizzaOrderController {
         model.addAttribute("pizzas", pizzas); // Передаем эту переменную в html страницу, как посылку
         model.addAttribute("pizzaOrder", pizzaOrder);
 
-        return "order"; // вернет order.html
+        return "order";
     }
 
-    @PostMapping("/order")
+    @PostMapping
     public String processOrder(@Valid PizzaOrder order, Errors errors) {
 
         if (errors.hasErrors()) {
@@ -64,7 +60,7 @@ public class PizzaOrderController {
 
         pizzaOrderRepository.save(order);
 
-        log.info("Order submitted: {}", order); // эта строка для логирования
+        //log.info("Order submitted: {}", order); // для логирования
 
         return "redirect:/final"; // перенаправление на
     }

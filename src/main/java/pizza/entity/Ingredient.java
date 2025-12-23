@@ -9,8 +9,6 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-// @Data не стоит использовать для сущностей, тк может вызывать проблемы с производительностью
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -19,13 +17,14 @@ import java.math.BigDecimal;
 public class Ingredient {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     @NotNull
     @Column(precision = 10)
     private String name;
 
-    private Type type; // Тип ингредиента
+    private Type type;
 
     @NotNull
     private int preparationTime; // минуты
@@ -37,6 +36,4 @@ public class Ingredient {
     enum Type {
         DOUGH, MEAT, VEGGIES, SAUCE
     }
-    // Как только будем добавляеть ингредиенты, просто будем перечислять их в ,
-    // а уже с БД будем брать ингредиенты для готовых рецептов пицц
 }
