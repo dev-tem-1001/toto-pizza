@@ -17,9 +17,6 @@ import java.math.BigDecimal;
 @Embeddable
 public class PizzaRef {
 
-    //@ManyToOne
-    //private Pizza pizza;
-
     private Long pizzaId;
 
     private String pizzaName;
