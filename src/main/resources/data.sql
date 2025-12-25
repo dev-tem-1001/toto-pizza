@@ -38,13 +38,13 @@ INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('TERIYAKI_SAUCE', 'Терияки соус', 3, 10, 129.00),
 ('RANCH_SAUCE', 'Ранч соус', 3, 5, 79.00);
 
-INSERT INTO pizza (id, name, preparation_time, price, created_at, image_url) values
-(1, 'Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
-(2, 'Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
-(3, 'Гавайская', 110, 380.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
-(4, 'Мясная', 130, 450.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
-(5, 'Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
-(6, 'Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png');
+INSERT INTO pizza (name, preparation_time, price, created_at, image_url) values
+('Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+('Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+('Гавайская', 110, 380.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+('Мясная', 130, 450.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+('Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png'),
+('Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0), '/images/pizza-image.png');
 
 -- Начинка пицц
 INSERT INTO pizza_ingredients (pizza_id, ingredient_id, name,

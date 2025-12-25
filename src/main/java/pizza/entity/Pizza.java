@@ -24,7 +24,7 @@ import java.util.List;
 public class Pizza {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -51,7 +51,37 @@ public class Pizza {
 
     private String imageUrl; // путь к соответствующему изображению пиццы
 
-    public void addIngredient(IngredientRef ingredient) {
-        this.ingredients.add(ingredient);
+    public void addIngredient(Ingredient ingredient) {
+
+        for (IngredientRef ingredientRef: ingredients) {
+            // Если ингредиент с таким id есть в пицце, то просто суммируем их ->
+            if (ingredientRef.getIngredientId().equals(ingredient.getId())) {
+                ingredientRef.setQuantity(ingredientRef.getQuantity() + 1);
+                ingredientRef.setPreparationTime(ingredientTime(ingredientRef, ingredient));
+                ingredientRef.setPrice(ingredientPrice(ingredient, ingredientRef.getQuantity()));
+                return;
+            }
+        }
+        // Если нету такого ингредиента, то добавляем как новый
+        IngredientRef ingredientRef = new IngredientRef();
+
+        ingredientRef.setIngredientId(ingredient.getId());
+        ingredientRef.setName(ingredient.getName());
+        ingredientRef.setType(ingredient.getType());
+        ingredientRef.setPreparationTime(ingredient.getPreparationTime());
+        ingredientRef.setPrice(ingredient.getPrice());
+
+        this.ingredients.add(ingredientRef);
+    }
+
+    // Функция которая будет плюсовать цену чтобы не была цена за 6 пицц как за 1 пиццу
+    // Саам решуу :D
+    public BigDecimal ingredientPrice(Ingredient ingredient, int quantity) {
+        return ingredient.getPrice().multiply(BigDecimal.valueOf(quantity));
+    }
+
+    // просто плюсуем время ингредиента
+    public int ingredientTime(IngredientRef ingredientRef, Ingredient ingredient) {
+        return ingredientRef.getPreparationTime() + ingredient.getPreparationTime();
     }
 }

@@ -33,7 +33,7 @@ public class Ingredient {
     @Column(precision = 10, scale = 2)
     private BigDecimal price;
 
-    enum Type {
+    public enum Type {
         DOUGH, MEAT, VEGGIES, SAUCE
     }
 }

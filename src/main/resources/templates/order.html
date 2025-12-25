@@ -8,13 +8,8 @@
     <h1>Heeellloooooo</h1>
     <form th:action="@{/order}" th:object="${pizzaOrder}" method="POST" >
         <div th:each="pizzaRef : ${pizzas}" class="pizza-card">
-
-                <h2 th:text="${pizzaRef.pizzaName}"></h2>
-                <h2 th:text="${pizzaRef.pizzaPrice} + ' ₽'" class="pizza-price"></h2>
-                <!-- <input th:field="*{pizzas}" name="pizzaId" th:value="${pizza.id}"> -->
-                <!-- <span th:text="${pizza.name}">PIZZA</span><br/> -->
-                <!-- <button class="button-select">Выбрать</button> -->
-
+            <h2 th:text="${pizzaRef.pizzaName}"></h2>
+            <h2 th:text="${pizzaRef.pizzaPrice} + ' ₽'" class="pizza-price"></h2>
         </div>
         <h3>Введите название заказа</h3>
         <label th:for="*{deliveryName}">Name: </label>
