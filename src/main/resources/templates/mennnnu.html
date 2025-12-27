@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/styles/menu.css">
+</head>
+<body>
+    <h1 class="pizza-title">Наши пиццы:</h1>
+        <div class="pizza-grid">
+            <div th:each="pizza : ${pizzas}" class="pizza-card">
+                <form th:action="@{/menu}" method="POST">
+                    <input type="hidden" name="pizzaId" th:value="${pizza.id}">
+                    <img th:src="${pizza.imageUrl}" alt="...">
+                    <h2 th:text="${pizza.name}"></h2>
+                    <div class="ingredients-line">
+                        <span th:each="ingredientRef : ${pizza.ingredients}"
+                              th:text="${ingredientRef.getName}  +
+                                  (${ingredientRefStat.last} ? '' : ', ')">
+                        </span>
+                    </div>
+
+                    <h2 th:text="${pizza.price} + ' ₽'" class="pizza-price"></h2>
+
+                    <!-- <input th:field="*{pizzas}" name="pizzaId" th:value="${pizza.id}"> -->
+                    <!-- <span th:text="${pizza.name}">PIZZA</span><br/> -->
+                    <!-- <button class="button-select">Выбрать</button> -->
+                    <button type="submit" class="button-select">Добавить в заказ</button>
+                </form>
+            </div>
+        </div>
+    <a th:href="@{/custom}" class="button-custom">
+        <b>Создайте свою пиццу!</b>
+    </a>
+
+    <a th:href="@{/order}" class="button-order">
+        <b>В заказ</b>
+    </a>
+    <button class="btn button-custom">Создайте свою пиццу!</button>
+    <button class="btn button-order">В заказ</button>
+</body>
+</html>
