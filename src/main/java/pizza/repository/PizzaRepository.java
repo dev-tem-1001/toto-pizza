@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface PizzaRepository extends JpaRepository<Pizza, Long> {
 
-    List<Pizza> findByIdIn(List<Long> ids);
-
 }

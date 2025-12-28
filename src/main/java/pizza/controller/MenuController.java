@@ -1,6 +1,6 @@
 package pizza.controller;
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,6 @@ import pizza.repository.PizzaRepository;
 
 import java.util.List;
 
-//@Slf4j
 @Controller
 @RequestMapping("/menu")
 @SessionAttributes("pizzaOrder") // Без него обьект будет обнуляться

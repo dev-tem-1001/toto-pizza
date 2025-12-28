@@ -31,14 +31,13 @@ public class PizzaOrder {
 
 
     @NotNull(message = "Список пицц не может быть нулевым")
-    //@ManyToMany(cascade = CascadeType.ALL)
     @ElementCollection
     private List<PizzaRef> pizzas = new ArrayList<>(); // список заказов
 
     @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now(); // дата создания
 
-    private LocalDateTime finalAt = getFinalAt(); // дата создания
+    private LocalDateTime finalAt = LocalDateTime.now(); // готовый заказ
 
     @NotNull
     private int preparationTime; // общее время готовки

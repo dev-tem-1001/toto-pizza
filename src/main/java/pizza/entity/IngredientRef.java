@@ -16,9 +16,6 @@ import java.math.BigDecimal;
 @Embeddable
 public class IngredientRef {
 
-    //@ManyToOne
-    //private Ingredient ingredient;
-
     private String ingredientId;
 
     @Column(precision = 10)
