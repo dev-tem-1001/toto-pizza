@@ -11,6 +11,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,13 +29,16 @@ public class PizzaOrder {
     @NotBlank(message="Введите название заказа")
     private String deliveryName; // Название заказа
 
-    @NotNull
+
+    @NotNull(message = "Список пицц не может быть нулевым")
     //@ManyToMany(cascade = CascadeType.ALL)
     @ElementCollection
     private List<PizzaRef> pizzas = new ArrayList<>(); // список заказов
 
     @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now(); // дата создания
+
+    private LocalDateTime finalAt = getFinalAt(); // дата создания
 
     @NotNull
     private int preparationTime; // общее время готовки
@@ -82,5 +86,15 @@ public class PizzaOrder {
     // Саам решуу :D
     public BigDecimal pizzaPrice(Pizza pizza, int quantity) {
         return pizza.getPrice().multiply(BigDecimal.valueOf(quantity));
+    }
+
+    // Получаем время готовности заказа
+    public LocalDateTime getReadyTime() {
+        return createdAt.plusMinutes(preparationTime);
+    }
+
+    public String getFormattedReadyTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return getReadyTime().format(formatter);
     }
 }

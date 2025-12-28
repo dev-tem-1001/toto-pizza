@@ -84,4 +84,9 @@ public class Pizza {
     public int ingredientTime(IngredientRef ingredientRef, Ingredient ingredient) {
         return ingredientRef.getPreparationTime() + ingredient.getPreparationTime();
     }
+
+    // для отображения пути с картинкой пиццы (из за кастомных)
+    public String getImageUrl() {
+        return imageUrl != null ? imageUrl : "/images/pizza.png";
+    }
 }

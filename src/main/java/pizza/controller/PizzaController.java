@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import pizza.entity.Ingredient;
 import pizza.entity.IngredientRef;
 import pizza.entity.Pizza;
@@ -24,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-
+@RequestMapping("/custom")
 @SessionAttributes("pizzaOrder")
 public class PizzaController {
 
@@ -34,7 +31,7 @@ public class PizzaController {
     @Autowired
     private PizzaRepository pizzaRepository;
 
-    @GetMapping("/custom")
+    @GetMapping
     public String showForm(Model model) {
         //List<Ingredient> ingredients = ingredientRepository.findAll();
 
@@ -43,7 +40,7 @@ public class PizzaController {
         return "custom";
     }
 
-    @PostMapping("/custom")
+    @PostMapping
     public String processPizzaCustom(@Valid PizzaFormDto pizzaForm,
                                      Errors errors,
                                      @ModelAttribute PizzaOrder pizzaOrder) { // это метод нужный для обработки данных из формы
@@ -103,7 +100,7 @@ public class PizzaController {
         return new PizzaFormDto();
     }
 
-    // это метод для фильтрации ингредиентов по типу
+    // функция для фильтрации ингредиентов по типу
     private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
         return ingredients
                 .stream() // это метод для преобразования списка в поток

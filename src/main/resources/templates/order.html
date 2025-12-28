@@ -112,8 +112,7 @@
                                 <label th:for="*{deliveryFlat}">Номер квартиры: </label>
                             </div>
                             <div class="col-md-7">
-                                <input type="text" class="form-control" th:field="*{deliveryFlat}"
-                                       placeholder="Например: 25">
+                                <input type="text" class="form-control" th:field="*{deliveryFlat}" placeholder="Например: 25">
                                 <span class="validationError"
                                       th:if="${#fields.hasErrors('deliveryFlat')}"
                                       th:errors="*{deliveryFlat}">deliveryFlat Error</span>
@@ -121,8 +120,20 @@
                         </div>
                             <!-- <h2 th:text="${pizzaOrder.totalPrice} + ' ₽'"></h2>
                             <h2 th:text="${pizzaOrder.preparationTime}"></h2> -->
-                        <div class="card-footer p-4  pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><button type="submit" class="btn btn-outline-dark mt-auto">Оформить заказ</button></div>
+
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="row align-items-center"> <!-- Добавил align-items-center -->
+                                <div class="col">
+                                    <a href="/menu" class="btn btn-outline-dark">
+                                        Перейти в меню
+                                    </a>
+                                </div>
+                                <div class="col text-end"> <!-- Исправил на col и text-end -->
+                                    <button type="submit" class="btn btn-outline-dark">
+                                        Оформить заказ
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

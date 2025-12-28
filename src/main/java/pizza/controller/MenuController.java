@@ -11,7 +11,7 @@ import pizza.repository.PizzaRepository;
 
 import java.util.List;
 
-@Slf4j
+//@Slf4j
 @Controller
 @RequestMapping("/menu")
 @SessionAttributes("pizzaOrder") // Без него обьект будет обнуляться
@@ -21,7 +21,7 @@ public class MenuController {
     private PizzaRepository pizzaRepository;
 
     @GetMapping
-    public String menu(Model model) {
+    public String showMenu(Model model) {
         List<Pizza> pizzas = pizzaRepository.findAll(); // Получаем список всех пицц
 
         model.addAttribute("pizzas", pizzas); // Передаем эту переменную в html страницу, как посылку

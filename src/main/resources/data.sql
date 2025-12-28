@@ -19,7 +19,7 @@ INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 -- Сыры и овощи - VEGGIES - 2
 INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('MOZZARELLA', 'Моцарелла', 2, 6, 40.00),
-('DOUBLE_MOZZARELLA', 'Увеличенная порция моцареллы', 2, 8, 70.00),
+('DOUBLE_MOZZARELLA', 'Увеличенная моцарелла', 2, 8, 70.00),
 ('PARMESAN', 'Пармезан', 2, 6, 50.00),
 ('GOUDA', 'Гауда', 2, 10, 45.00),
 ('BLUE_CHEESE', 'Дорблю', 2, 10, 55.00),
@@ -38,13 +38,13 @@ INSERT INTO ingredient (id, name, type, preparation_time, price) VALUES
 ('TERIYAKI_SAUCE', 'Терияки соус', 3, 10, 129.00),
 ('RANCH_SAUCE', 'Ранч соус', 3, 5, 79.00);
 
-INSERT INTO pizza (name, preparation_time, price, created_at, image_url) values
-('Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0), '/images/pizza.png'),
-('Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0), '/images/pizza.png'),
-('Гавайская', 110, 380.00, CURRENT_TIMESTAMP(0), '/images/pizza.png'),
-('Мясная', 130, 450.00, CURRENT_TIMESTAMP(0), '/images/pizza.png'),
-('Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0), '/images/pizza.png'),
-('Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0), '/images/pizza.png');
+INSERT INTO pizza (name, preparation_time, price, created_at) values
+('Пепперони', 120, 350.00, CURRENT_TIMESTAMP(0)),
+('Маргарита', 90, 320.00, CURRENT_TIMESTAMP(0)),
+('Гавайская', 110, 380.00, CURRENT_TIMESTAMP(0)),
+('Мясная', 130, 450.00, CURRENT_TIMESTAMP(0)),
+('Вегетарианская', 95, 360.00, CURRENT_TIMESTAMP(0)),
+('Четыре сыра', 100, 420.00, CURRENT_TIMESTAMP(0));
 
 -- Начинка пицц
 INSERT INTO pizza_ingredients (pizza_id, ingredient_id, name,

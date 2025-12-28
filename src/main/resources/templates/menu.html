@@ -25,7 +25,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/">Меню</a>
+                            <a class="nav-link active" href="/menu">Меню</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/custom">Собрать свою</a>
@@ -57,7 +57,7 @@
                             <div class="col mb-5">
                                 <div class="card h-100">
                                     <!-- Product image-->
-                                    <img class="card-img-top" th:src="${pizza.imageUrl}" th:alt="${pizza.name}" />
+                                    <img class="card-img-top" th:src="${pizza.getImageUrl()}" th:alt="${pizza.name}" />
                                     <!-- Product details-->
                                     <div class="card-body p-4">
                                         <div class="text-center">

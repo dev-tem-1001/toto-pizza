@@ -29,7 +29,7 @@ public class PizzaOrderController {
     private PizzaRepository pizzaRepository;
 
     @GetMapping
-    public String order(@ModelAttribute PizzaOrder pizzaOrder,
+    public String showOrder(@ModelAttribute PizzaOrder pizzaOrder,
                         Model model) {
 
         List<PizzaRef> pizzas = pizzaOrder.getPizzas();
@@ -62,6 +62,6 @@ public class PizzaOrderController {
 
         //log.info("Order submitted: {}", order); // для логирования
 
-        return "redirect:/final"; // перенаправление на
+        return "redirect:/order/final"; // перенаправление на
     }
 }

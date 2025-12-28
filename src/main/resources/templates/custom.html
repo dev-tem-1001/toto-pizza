@@ -1,75 +1,182 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>ToToPizza - Заказ пиццы</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- ссылка на BootStrap, вместо 10.000 строк в файле styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"  rel="stylesheet">
+
+    <!-- <link th:href="@{/styles/styles.css}" rel="stylesheet"> -->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{/styles/custom.css}" rel="stylesheet">
+    <!-- <link href="/styles/styles.css" rel="stylesheet" /> -->
 </head>
 <body>
-    <h1 class="ingredient-title">Сделайте свою пиццу!</h1>
-    <div class="ingredient-grid">
-        <form th:action="@{/custom}" method="POST" th:object="${pizzaForm}">
-
-            <label th:for="*{name}">Придумайте название пиццы: </label>
-            <input type="text" th:field="*{name}"/>
-            <span class="validationError"
-                  th:if="${#fields.hasErrors('name')}"
-                  th:errors="*{name}">name Error</span>
-
-            <!-- <div :each="ingredient : ${ingredients}" class="ingredient-card"> -->
-            <!--    <input type="hidden" name="ingredientId" th:value="${ingredient.id}"> -->
-            <!--    <h2 th:text="${ingredient.name}"></h2> -->
-            <!--    <h2 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h2> -->
-
-            <!--</div> -->
-
-            <div class="ingredient-group" id="doughs"> <!-- это группа ингредиентов -->
-                <h3>Выберите тип теста:</h3> <!-- это заголовок -->
-                <div th:each="ingredient : ${dough}"> <!-- это цикл для каждого ингредиента -->
-                    <input th:field="*{ingredientIds}" type="checkbox"
-                           th:value="${ingredient.id}"/> <!-- это чекбокс для каждого ингредиента -->
-                    <!-- <span th:text="${ingredient.name}">INGREDIENT</span><br/> это название ингредиента -->
-                    <h3 th:text="${ingredient.name}"></h3>
-                    <br/>
-                    <h3 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h3>
-                </div>
-            </div>
-
-            <div class="ingredient-group" id="meats"> <!-- это группа ингредиентов -->
-                <h3>Выберите мясные ингредиенты:</h3> <!-- это заголовок -->
-                <div th:each="ingredient : ${meat}"> <!-- это цикл для каждого ингредиента -->
-                    <input th:field="*{ingredientIds}" type="checkbox"
-                           th:value="${ingredient.id}"/> <!-- это чекбокс для каждого ингредиента -->
-                    <!-- <span th:text="${ingredient.name}">INGREDIENT</span><br/> это название ингредиента -->
-                    <h3 th:text="${ingredient.name}"></h3>
-                    <br/>
-                    <h3 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h3>
-                </div>
-            </div>
-
-            <div class="ingredient-group" id="veggies"> <!-- это группа ингредиентов -->
-                <h3>Выберите овощи и сыры</h3> <!-- это заголовок -->
-                <div th:each="ingredient : ${veggies}"> <!-- это цикл для каждого ингредиента -->
-                    <input th:field="*{ingredientIds}" type="checkbox"
-                           th:value="${ingredient.id}"/> <!-- это чекбокс для каждого ингредиента -->
-                    <!-- <span th:text="${ingredient.name}">INGREDIENT</span><br/> это название ингредиента -->
-                    <h3 th:text="${ingredient.name}"></h3>
-                    <h3 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h3>
-                </div>
-            </div>
-
-            <div class="ingredient-group" id="sauces"> <!-- это группа ингредиентов -->
-                <h3>Выберите соусы и добавки:</h3> <!-- это заголовок -->
-                <div th:each="ingredient : ${sauce}"> <!-- это цикл для каждого ингредиента -->
-                    <input th:field="*{ingredientIds}" type="checkbox"
-                           th:value="${ingredient.id}"/> <!-- это чекбокс для каждого ингредиента -->
-                    <!-- <span th:text="${ingredient.name}">INGREDIENT</span><br/> это название ингредиента -->
-                    <h3 th:text="${ingredient.name}"></h3>
-                    <h3 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h3>
-                </div>
-            </div>
-
-            <button type="submit" class="button-select">Добавить в заказ</button>
-        </form>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!">🍕 ToToPizza</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/menu">Меню</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/custom">Собрать свою</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/order">В заказ</a>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
+<!-- Header-->
+<header class="bg-orange py-1">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Создайте уникальную пиццу</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Добавьте ингредиенты по своему желанию</p>
+        </div>
+    </div>
+</header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <!-- Название пиццы -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <form th:action="@{/custom}" method="POST" th:object="${pizzaForm}">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title mb-4">Придумайте название вашей пиццы</h3>
+                            <div class="mb-3">
+                                <input type="text"
+                                       th:field="*{name}"
+                                       class="form-control form-control-lg"
+                                       placeholder="Например: Моя фирменная пицца"/>
+                            </div>
+                            <span class="text-danger"
+                                  th:if="${#fields.hasErrors('name')}"
+                                  th:errors="*{name}">Ошибка названия</span>
+                        </div>
+                    </div>
+
+                    <!-- Тесто (только один можно выбрать) -->
+                    <div class="category-title">
+                        <h3>Тип теста (можно выбрать только один)</h3>
+                    </div>
+                    <div class="row mb-4">
+                        <div th:each="ingredient : ${dough}" class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="ingredient-card text-center">
+                                <div class="form-check d-flex justify-content-center align-items-center mb-3">
+                                    <input class="form-check-input ingredient-checkbox"
+                                           type="radio"
+                                           th:field="*{ingredientIds}"
+                                           th:value="${ingredient.id}"
+                                           th:id="${'dough_' + ingredient.id}"
+                                           name="doughGroup">
+                                    <label class="form-check-label ingredient-name"
+                                           th:for="${'dough_' + ingredient.id}">
+                                        <h5 th:text="${ingredient.name}" class="mb-1"></h5>
+                                    </label>
+                                </div>
+                                <h4 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Мясные ингредиенты -->
+                    <div class="category-title">
+                        <h3>Мясные ингредиенты</h3>
+                    </div>
+                    <div class="row mb-4">
+                        <div th:each="ingredient : ${meat}" class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="ingredient-card text-center">
+                                <div class="form-check d-flex justify-content-center align-items-center mb-3">
+                                    <input class="form-check-input ingredient-checkbox"
+                                           type="checkbox"
+                                           th:field="*{ingredientIds}"
+                                           th:value="${ingredient.id}"
+                                           th:id="${'meat_' + ingredient.id}">
+                                    <label class="form-check-label ingredient-name"
+                                           th:for="${'meat_' + ingredient.id}">
+                                        <h5 th:text="${ingredient.name}" class="mb-1"></h5>
+                                    </label>
+                                </div>
+                                <h4 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Овощи и сыры -->
+                    <div class="category-title">
+                        <h3>Овощи и сыры</h3>
+                    </div>
+                    <div class="row mb-4">
+                        <div th:each="ingredient : ${veggies}" class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="ingredient-card text-center">
+                                <div class="form-check d-flex justify-content-center align-items-center mb-3">
+                                    <input class="form-check-input ingredient-checkbox"
+                                           type="checkbox"
+                                           th:field="*{ingredientIds}"
+                                           th:value="${ingredient.id}"
+                                           th:id="${'veggies_' + ingredient.id}">
+                                    <label class="form-check-label ingredient-name"
+                                           th:for="${'veggies_' + ingredient.id}">
+                                        <h5 th:text="${ingredient.name}" class="mb-1"></h5>
+                                    </label>
+                                </div>
+                                <h4 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Соусы и добавки -->
+                    <div class="category-title">
+                        <h3>Соусы и добавки</h3>
+                    </div>
+                    <div class="row mb-5">
+                        <div th:each="ingredient : ${sauce}" class="col-lg-3 col-md-6 col-sm-6 mb-4">
+                            <div class="ingredient-card text-center">
+                                <div class="form-check d-flex justify-content-center align-items-center mb-3">
+                                    <input class="form-check-input ingredient-checkbox"
+                                           type="checkbox"
+                                           th:field="*{ingredientIds}"
+                                           th:value="${ingredient.id}"
+                                           th:id="${'sauce_' + ingredient.id}">
+                                    <label class="form-check-label ingredient-name"
+                                           th:for="${'sauce_' + ingredient.id}">
+                                        <h5 th:text="${ingredient.name}" class="mb-1"></h5>
+                                    </label>
+                                </div>
+                                <h4 th:text="${ingredient.price} + ' ₽'" class="ingredient-price"></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка отправки -->
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-outline-dark mt-auto">Добавить в заказ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- Core theme JS-->
+<!-- <script src="js/scripts.js"></script> -->
 </body>
 </html>
