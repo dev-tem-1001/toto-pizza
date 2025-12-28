@@ -7,10 +7,10 @@
     background-color: rgba(var(--bs-orange-rgb), var(--bs-bg-opacity)) !important;
 }
 
-.py-5 {
+/*.py-5 {
     padding-top: 0.1rem !important;
     padding-bottom: 0.1rem !important;
-}
+} */
 
 .card {
     --bs-card-border-width: 0px; /* обводка карточки на 0 */
@@ -20,6 +20,7 @@
     --bs-btn-padding-x: 1.3rem; /* отступ по горизонтали */
     --bs-btn-padding-y: 0.6rem; /* отступ по вертикали */
     --bs-btn-font-size: 1.2rem; /* размер шрифта */
+    --bs-btn-font-weight: 500; /* жирность шрифта def+100 */
     --bs-btn-border-width: 0px !important; /* обводка кнопки */
     --bs-btn-border-radius: 50px !important; /* закругление кнопки */
     --bs-btn-color: #d15700; /* цвет текста кнопки в неактивном режиме */

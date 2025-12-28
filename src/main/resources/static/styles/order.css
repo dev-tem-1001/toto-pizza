@@ -1,0 +1,52 @@
+:root {
+    --bs-orange-rgb: 222, 90, 0; /* цвет шапки */
+    --bs-body-font-weight: 500;
+
+}
+
+.bg-orange {
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-orange-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.py-5 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important; /* def: 3rem */
+}
+
+.card {
+    --bs-card-border-width: 0px; /* обводка карточки на 0 */
+}
+
+.shadow-sm {
+    box-shadow: 0 .425rem .55rem rgba(0, 0, 0, .075) !important;
+}
+
+.form-control {
+    background-color: #f1f3f6; /* фон ввода */
+}
+
+.form-control:focus {
+    color: var(--bs-body-color);
+    background-color: #f1f3f6;
+    border-color: #ffbd90;
+    box-shadow: 0 0 0 .25rem rgba(222, 90, 0, .25);
+}
+
+.btn {
+    --bs-btn-padding-x: 1.5rem; /* отступ по горизонтали */
+    --bs-btn-padding-y: 0.7rem; /* отступ по вертикали */
+    --bs-btn-font-size: 1.2rem; /* размер шрифта */
+    --bs-btn-font-weight: 500; /* жирность шрифта def+100 */
+    --bs-btn-border-width: 0px !important; /* обводка кнопки */
+    --bs-btn-border-radius: 50px !important; /* закругление кнопки */
+    --bs-btn-color: #d15700; /* цвет текста кнопки в неактивном режиме */
+    --bs-btn-bg: #fff0e6; /* цвет кнопки в неактивном режиме */
+}
+
+.btn-outline-dark {
+    --bs-btn-hover-color: #d15700; /* цвет текста кнопки в активном режиме */
+    --bs-btn-hover-bg: #ffd2b3; /* цвет кнопки в активном режиме */
+    --bs-btn-active-color: #ffd2b3; /* цвет текста кнопки при нажатии */
+    --bs-btn-active-bg: #fff0e6; /* цвет кнопки при нажатии */
+}

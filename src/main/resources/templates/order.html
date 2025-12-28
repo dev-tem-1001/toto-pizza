@@ -1,57 +1,186 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>ToToPizza - Заказ пиццы</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- ссылка на BootStrap, вместо 10.000 строк в файле styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"  rel="stylesheet">
+
+    <!-- <link th:href="@{/styles/styles.css}" rel="stylesheet"> -->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{/styles/order.css}" rel="stylesheet">
+    <!-- <link href="/styles/styles.css" rel="stylesheet" /> -->
 </head>
 <body>
-    <h1>Heeellloooooo</h1>
-    <form th:action="@{/order}" th:object="${pizzaOrder}" method="POST" >
-        <div th:each="pizzaRef : ${pizzas}" class="pizza-card">
-            <h2 th:text="${pizzaRef.pizzaName}"></h2>
-            <h2 th:text="${pizzaRef.pizzaPrice} + ' ₽'" class="pizza-price"></h2>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="#!">🍕 ToToPizza</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/menu">Меню</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/custom">Собрать свою</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/order">В заказ</a>
+                </li>
+            </ul>
         </div>
-        <h3>Введите название заказа</h3>
-        <label th:for="*{deliveryName}">Name: </label>
-        <input type="text" th:field="*{deliveryName}"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('deliveryName')}"
-              th:errors="*{deliveryName}">Name Error</span>
-        <br/>
+    </div>
+</nav>
+<!-- Header-->
+<header class="bg-orange py-1">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Оформление заказа</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Проверьте заказ и введите данные для доставки</p>
+        </div>
+    </div>
+</header>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row">
+            <!-- <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4"> -->
+                <div class="col-lg-6 mb-4">
+                    <form th:action="@{/order}" th:object="${pizzaOrder}" method="POST" >
+
+                        <div class="row align-items-center mb-3">
+                            <div class="col-md-4">
+                                <label th:for="*{deliveryName}" class="form-label mb-1">Имя:</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" th:field="*{deliveryName}"
+                                       placeholder="Ваше имя или название заказа">
+                                <span class="validationError text-danger small d-block mt-1"
+                                      th:if="${#fields.hasErrors('deliveryName')}"
+                                      th:errors="*{deliveryName}">Name Error</span>
+                            </div>
+                        </div>
 
 
-        <label th:for="*{deliveryCity}">deliveryCity: </label>
-        <input type="text" th:field="*{deliveryCity}"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('deliveryCity')}"
-              th:errors="*{deliveryCity}">deliveryCity Error</span>
-        <br/>
+                        <div class="row align-items-center mb-3">
+                            <div class="col-md-4">
+                                <label th:for="*{deliveryCity}" class="form-label mb-1">Город:</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" th:field="*{deliveryCity}"
+                                       placeholder="Например: Москва">
+                                <span class="validationError"
+                                      th:if="${#fields.hasErrors('deliveryCity')}"
+                                      th:errors="*{deliveryCity}">deliveryCity Error</span>
+                            </div>
+                        </div>
 
-        <label th:for="*{deliveryStreet}">deliveryCity: </label>
-        <input type="text" th:field="*{deliveryStreet}"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('deliveryStreet')}"
-              th:errors="*{deliveryStreet}">deliveryStreet Error</span>
-        <br/>
+                        <div class="row algin-items-center mb-4">
+                            <div class="col-md-4">
+                                <label th:for="*{deliveryStreet}" class="form-label mb-1">Название улицы: </label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" th:field="*{deliveryStreet}"
+                                       placeholder="Например: Улица Свободы">
+                                <span class="validationError"
+                                      th:if="${#fields.hasErrors('deliveryStreet')}"
+                                      th:errors="*{deliveryStreet}">deliveryStreet Error</span>
+                            </div>
+                        </div>
 
-        <label th:for="*{deliveryHouseNumber}">deliveryHouseNumber: </label>
-        <input type="text" th:field="*{deliveryHouseNumber}"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('deliveryHouseNumber')}"
-              th:errors="*{deliveryHouseNumber}">deliveryHouseNumber Error</span>
-        <br/>
+                        <div class="row algin-items-center mb-4">
+                            <div class="col-md-4">
+                                <label th:for="*{deliveryHouseNumber}">Номер дома: </label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" th:field="*{deliveryHouseNumber}"
+                                       placeholder="Например: 45">
+                                <span class="validationError"
+                                      th:if="${#fields.hasErrors('deliveryHouseNumber')}"
+                                      th:errors="*{deliveryHouseNumber}">deliveryHouseNumber Error</span>
+                            </div>
+                        </div>
 
-        <label th:for="*{deliveryFlat}">deliveryFlat: </label>
-        <input type="text" th:field="*{deliveryFlat}"/>
-        <span class="validationError"
-              th:if="${#fields.hasErrors('deliveryFlat')}"
-              th:errors="*{deliveryFlat}">deliveryFlat Error</span>
-        <br/>
+                        <div class="row algin-items-center mb-4">
+                            <div class="col-md-4">
+                                <label th:for="*{deliveryFlat}">Номер квартиры: </label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" class="form-control" th:field="*{deliveryFlat}"
+                                       placeholder="Например: 25">
+                                <span class="validationError"
+                                      th:if="${#fields.hasErrors('deliveryFlat')}"
+                                      th:errors="*{deliveryFlat}">deliveryFlat Error</span>
+                            </div>
+                        </div>
+                            <!-- <h2 th:text="${pizzaOrder.totalPrice} + ' ₽'"></h2>
+                            <h2 th:text="${pizzaOrder.preparationTime}"></h2> -->
+                        <div class="card-footer p-4  pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><button type="submit" class="btn btn-outline-dark mt-auto">Оформить заказ</button></div>
+                        </div>
+                    </form>
+                </div>
 
-        <h2 th:text="${pizzaOrder.totalPrice}"></h2>
-        <h2 th:text="${pizzaOrder.preparationTime}"></h2>
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100 shadow-sm pizza-list-card">
+                        <div class="card-header bg-white border-bottom">
+                            <h3 class="h4 mb-0">Ваш заказ</h3>
+                        </div>
+                        <div class="card-body">
 
-        <button type="submit" class="button-select">Оформить заказ</button>
-    </form>
+                            <!-- Если пицц нет -->
+                            <div th:if="${pizzas == null or pizzas.empty}" class="text-center py-4">
+                                <p class="text-muted">Ваша корзина пуста</p>
+                                <a href="/menu" class="btn btn-primary">Перейти в меню</a>
+                            </div>
+
+                            <!-- Список пицц -->
+                            <div th:each="pizzaRef : ${pizzas}" class="pizza-item">
+                                <div class="row align-items-center">
+                                    <div class="col-8">
+                                        <h5 class="mb-1" th:text="${pizzaRef.pizzaName} + (${pizzaRef.quantity} > 1 ? ' x ' + ${pizzaRef.quantity} : '')">Маргарита</h5>
+                                        <small class="text-muted">ID: <span th:text="${pizzaRef.pizzaId}">1</span></small>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <h4 class="text mb-0" th:text="${pizzaRef.pizzaPrice} + ' ₽'">320 ₽</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Итоговая сумма -->
+                            <div th:if="${not (pizzas == null or pizzas.empty)}" class="mt-4 pt-3 border-top">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h5>Итого:</h5>
+                                        <p class="text-muted mb-1">Время приготовления:</p>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <h4 class="text" th:text="${pizzaOrder.totalPrice} + ' ₽'">670 ₽</h4>
+                                        <p class="text-muted" th:text="${pizzaOrder.preparationTime} + ' минут'">210 минут</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+        </div>
+    </div>
+</section>
+<!-- Footer-->
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+</footer>
+<!-- Bootstrap core JS-->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- Core theme JS-->
+<!-- <script src="js/scripts.js"></script> -->
 </body>
 </html>

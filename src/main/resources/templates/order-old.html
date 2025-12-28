@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Heeellloooooo</h1>
+    <form th:action="@{/order}" th:object="${pizzaOrder}" method="POST" >
+        <div th:each="pizzaRef : ${pizzas}" class="pizza-card">
+            <h2 th:text="${pizzaRef.pizzaName}"></h2>
+            <h2 th:text="${pizzaRef.pizzaPrice} + ' ₽'" class="pizza-price"></h2>
+        </div>
+        <h3>Введите название заказа</h3>
+        <label th:for="*{deliveryName}">Name: </label>
+        <input type="text" th:field="*{deliveryName}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryName')}"
+              th:errors="*{deliveryName}">Name Error</span>
+        <br/>
+
+
+        <label th:for="*{deliveryCity}">deliveryCity: </label>
+        <input type="text" th:field="*{deliveryCity}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryCity')}"
+              th:errors="*{deliveryCity}">deliveryCity Error</span>
+        <br/>
+
+        <label th:for="*{deliveryStreet}">deliveryCity: </label>
+        <input type="text" th:field="*{deliveryStreet}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryStreet')}"
+              th:errors="*{deliveryStreet}">deliveryStreet Error</span>
+        <br/>
+
+        <label th:for="*{deliveryHouseNumber}">deliveryHouseNumber: </label>
+        <input type="text" th:field="*{deliveryHouseNumber}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryHouseNumber')}"
+              th:errors="*{deliveryHouseNumber}">deliveryHouseNumber Error</span>
+        <br/>
+
+        <label th:for="*{deliveryFlat}">deliveryFlat: </label>
+        <input type="text" th:field="*{deliveryFlat}"/>
+        <span class="validationError"
+              th:if="${#fields.hasErrors('deliveryFlat')}"
+              th:errors="*{deliveryFlat}">deliveryFlat Error</span>
+        <br/>
+
+        <h2 th:text="${pizzaOrder.totalPrice}"></h2>
+        <h2 th:text="${pizzaOrder.preparationTime}"></h2>
+
+        <button type="submit" class="button-select">Оформить заказ</button>
+    </form>
+</body>
+</html>
